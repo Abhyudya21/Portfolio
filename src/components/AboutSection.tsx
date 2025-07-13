@@ -32,8 +32,8 @@ const AboutSection = () => {
   const services = [
     {
       icon: Code,
-      title: "Frontend Development",
-      description: "Building responsive and interactive user interfaces with modern frameworks and tools."
+      title: "Java Development",
+      description: " Building robust, scalable, and secure backend solutions using Java to power high-performance applications."
     },
     {
       icon: Zap,
@@ -42,8 +42,8 @@ const AboutSection = () => {
     },
     {
       icon: Palette,
-      title: "UI/UX Design",
-      description: "Designing intuitive and beautiful user experiences that delight and convert."
+      title: "Database Managment",
+      description: "Architecting structured data systems that power performance, ensure integrity, and drive decision-making."
     }
   ];
 

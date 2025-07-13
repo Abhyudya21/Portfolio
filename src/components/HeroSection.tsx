@@ -24,6 +24,15 @@ const HeroSection = () => {
     aboutSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToSection = (href: string) => {
+    if (href === '#') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const element = document.querySelector(href);
+      element?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-primary/10">
       {/* Animated Background Elements */}
@@ -41,7 +50,7 @@ const HeroSection = () => {
             }}
           />
         ))}
-        
+
         {/* Sparkle effects */}
         {[...Array(8)].map((_, i) => (
           <Sparkles
@@ -67,30 +76,17 @@ const HeroSection = () => {
               👋 Hi, this is
             </p>
           )}
-        </div> */}
-
-        {/* Name with Typewriter Effect */}
-        <div className="mb-6 h-24 md:h-32 lg:h-40 flex items-center justify-center">
-          {showName && (
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold gradient-text animate-typewriter opacity-0"
-                style={{ 
-                  animationFillMode: 'forwards',
-                  animationDelay: '0.3s'
-                }}>
-              Abhyudya Bhardwaj
-            </h1>
-          )}
-        </div>
+        </div> */}       
 
         {/* Title with Slide Animation */}
         <div className="mb-8">
-          
+
           {showTitle && (
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-primary animate-slide-up opacity-0"
-                style={{ 
-                  animationFillMode: 'forwards',
-                  animationDelay: '0.5s'
-                }}>
+              style={{
+                animationFillMode: 'forwards',
+                animationDelay: '0.5s'
+              }}>
 
               Software Developer
             </h2>
@@ -100,38 +96,48 @@ const HeroSection = () => {
         {/* Content Section */}
         {showContent && (
           <div className="animate-slide-up opacity-0"
-               style={{ 
-                 animationFillMode: 'forwards',
-                 animationDelay: '0.7s'
-               }}>
+            style={{
+              animationFillMode: 'forwards',
+              animationDelay: '0.7s'
+            }}>
             <p className="text-subtitle text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
-              Crafting digital experiences with passion and precision. 
+              Crafting digital experiences with passion and precision.
               Bringing ideas to life through elegant code, stunning design, and innovative solutions.
             </p>
-            
+
             {/* Enhanced CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
+                onClick={() => scrollToSection('#projects')}
+
                 className="bg-hero-gradient hover:shadow-primary transition-all duration-500 hover:scale-110 text-lg px-10 py-6 group relative overflow-hidden"
               >
                 <span className="relative z-10">View My Work</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 hover:scale-110 text-lg px-10 py-6 hover:shadow-primary"
+
+              <a
+                href="/Abhyudya_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Get In Touch
-              </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 hover:scale-110 text-lg px-10 py-6 hover:shadow-primary"
+                >
+                  View Resume
+                </Button>
+              </a>
+
             </div>
 
             {/* Enhanced Social Links */}
             <div className="flex justify-center gap-8 mb-20">
               {[
-                { icon: Github, href: "#", label: "GitHub", color: "hover:text-gray-400" },
-                { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:text-blue-400" },
+                { icon: Github, href: "https://github.com/Abhyudya21", label: "GitHub", color: "hover:text-gray-400" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/abhyudya-bhardwaj-394a3821b/", label: "LinkedIn", color: "hover:text-blue-400" },
                 { icon: Mail, href: "#", label: "Email", color: "hover:text-green-400" }
               ].map(({ icon: Icon, href, label, color }) => (
                 <a
@@ -146,7 +152,7 @@ const HeroSection = () => {
               ))}
             </div>
           </div>
-        )}        
+        )}
       </div>
 
       {/* Background Glow Effect */}

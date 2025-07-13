@@ -22,19 +22,7 @@ const Footer = () => {
     <footer className="bg-card border-t border-border">
       <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {/* Brand */}
-          <div>
-            <button
-              onClick={scrollToTop}
-              className="text-2xl font-bold gradient-text hover:scale-105 transition-transform duration-300 mb-4 block"
-            >
-              Portfolio
-            </button>
-            <p className="text-muted-foreground leading-relaxed">
-              Crafting digital experiences with passion and precision. 
-              Let's build something amazing together.
-            </p>
-          </div>
+         
 
           {/* Quick Links */}
           <div>
@@ -87,14 +75,6 @@ const Footer = () => {
           <p className="text-muted-foreground text-sm">
             © {currentYear} Portfolio. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-              Terms of Service
-            </a>
-          </div>
         </div>
       </div>
     </footer>

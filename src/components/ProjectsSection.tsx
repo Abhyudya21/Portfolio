@@ -31,7 +31,7 @@ const ProjectsSection = () => {
       description: "Developed scalable backend services using C# and .NET to power an EV comparison platform. Built secure RESTful APIs for authentication and data handling, and optimized MySQL queries for efficient performance. Collaborated with Angular frontend to ensure smooth and responsive user experience.",
       image: "src/assets/weev.jpg",
       technologies: ["Angular", "C#", "MySQL", "ASP.NET"],
-      github: "#",
+      github: "https://github.com/Abhyudya21",
       live: "https://weev.co.in/",
       featured: true
     },
@@ -40,7 +40,7 @@ const ProjectsSection = () => {
       description: "Built a secure and intuitive journal application using Spring Boot. Implemented CRUD functionality for entries, user authentication, and session management. Integrated MySQL for persistent storage and used Thymeleaf for dynamic, server-side rendered views.",
       image: "src/assets/journal.jpg",
       technologies: ["SpringBoot", "MongoDb"],
-      github: "#",
+      github: "https://github.com/Abhyudya21",
       live: "#",
       featured: true
     },
@@ -49,8 +49,18 @@ const ProjectsSection = () => {
       description: "A modern portfolio website with smooth animations, dark/light theme, and responsive design. Built with Next.js and Framer Motion.",
       image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
       technologies: ["Next.js", "Framer Motion", "TailwindCSS", "MDX"],
-      github: "#",
+      github: "https://github.com/Abhyudya21",
       live: "#",
+      featured: false
+    },
+       {
+      title: "Homiezu",
+      description: "A comprehensive real estate platform allowing users to rent, buy, sell, and lease properties with ease. Features secure user authentication, advanced property filtering, and built-in legal documentation support to streamline real estate transactions. Fully responsive and built for scalability.",
+
+      image: "src/assets/homiezu.jpg",
+technologies: ["Next.js", "NextAuth.js", "Prisma", "Drizzle", "Tailwind CSS", "tRPC"],
+      github: "https://github.com/Abhyudya21",
+      live: "https://homiezu.com/",
       featured: false
     },
     {
@@ -58,7 +68,7 @@ const ProjectsSection = () => {
       description: "Built a fully responsive Wordle clone with six-attempt logic and real-time input feedback.Implemented core gameplay: letter evaluation (correct, present, absent) and dynamic DOM updates—no external libraries used.",
       image: "src/assets/wordle.jpg",
       technologies: ["React", "OpenAI API", "Socket.io", "Express"],
-      github: "#",
+      github: "https://github.com/Abhyudya21",
       live: "#",
       featured: false
     },
@@ -137,7 +147,7 @@ const ProjectsSection = () => {
 <div className="px-4 sm:px-6 lg:px-8 py-12">
   <h3 className="text-2xl font-semibold mb-8 text-center text-foreground">Other Projects</h3>
   
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
     {projects.filter(project => !project.featured).map((project, index) => (
       <Card
         key={project.title}
