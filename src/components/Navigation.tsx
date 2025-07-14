@@ -44,7 +44,7 @@ const Navigation = () => {
             onClick={() => scrollToSection('#')}
             className="text-2xl font-bold gradient-text hover:scale-105 transition-transform duration-300"
           >
-            Portfolio
+            Builds & Bytes
           </button>
 
           {/* Desktop Navigation */}

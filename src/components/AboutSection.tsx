@@ -57,8 +57,7 @@ const AboutSection = () => {
               About <span className="gradient-text">Me</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              I'm a passionate developer with over 5 years of experience creating digital solutions 
-              that make a difference. I love turning complex problems into simple, beautiful, and intuitive designs.
+             Computer Science Graduate with hands-on experience in Java, C#, MySQL, and Angular. Skilled in building full-stack applications with a focus on clean code, scalability, and user-centric design. Passionate about solving real-world problems through technology and continuously learning in a fast-paced environment.
             </p>
           </div>
 
@@ -69,7 +68,7 @@ const AboutSection = () => {
               <h3 className="text-2xl font-semibold text-foreground">My Journey</h3>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  My journey in the world of technology began with a deep curiosity for how systems work beneath the surface. Over the years, I’ve honed my skills in Java, front-end development, and database management, applying them to real-world projects that reflect both creativity and functionality. 
+                  My journey in the world of technology began with a deep curiosity for how systems work beneath the surface. Over the years, I’ve honed my skills in Java, back-end development, and database management, applying them to real-world projects that reflect both creativity and functionality. 
                 </p>
                 <p>
                  From building full-stack applications to optimizing user experiences, every step has been a pursuit of excellence and growth. With a strong foundation in computer science and a commitment to continuous learning, I aim to contribute meaningfully to forward-thinking tech teams and drive impactful digital solutions. Every project is an opportunity 

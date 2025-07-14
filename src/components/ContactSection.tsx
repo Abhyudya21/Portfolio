@@ -97,7 +97,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     {
       icon: MapPin,
       title: "Location",
-      value: "Rishikesh, India",
+      value: "Remote, India",
       href: "#"
     }
   ];
