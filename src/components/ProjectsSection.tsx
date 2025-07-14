@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ExternalLink, Github } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+
 const ProjectsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -29,7 +30,7 @@ const ProjectsSection = () => {
     {
       title: "EV Platform",
       description: "Developed scalable backend services using C# and .NET to power an EV comparison platform. Built secure RESTful APIs for authentication and data handling, and optimized MySQL queries for efficient performance. Collaborated with Angular frontend to ensure smooth and responsive user experience.",
-      image: "src/assets/weev.jpg",
+      image: "/weev.jpg",
       technologies: ["Angular", "C#", "MySQL", "ASP.NET"],
       github: "https://github.com/Abhyudya21",
       live: "https://weev.co.in/",
@@ -38,7 +39,7 @@ const ProjectsSection = () => {
     {
       title: "JournalApp",
       description: "Built a secure and intuitive journal application using Spring Boot. Implemented CRUD functionality for entries, user authentication, and session management. Integrated MySQL for persistent storage and used Thymeleaf for dynamic, server-side rendered views.",
-      image: "src/assets/journal.jpg",
+      image: "/journal.jpg",
       technologies: ["SpringBoot", "MongoDb"],
       github: "https://github.com/Abhyudya21",
       live: "#",
@@ -57,7 +58,7 @@ const ProjectsSection = () => {
       title: "Homiezu",
       description: "A comprehensive real estate platform allowing users to rent, buy, sell, and lease properties with ease. Features secure user authentication, advanced property filtering, and built-in legal documentation support to streamline real estate transactions. Fully responsive and built for scalability.",
 
-      image: "src/assets/homiezu.jpg",
+      image: "/homiezu.jpg",
 technologies: ["Next.js", "NextAuth.js", "Prisma", "Drizzle", "Tailwind CSS", "tRPC"],
       github: "https://github.com/Abhyudya21",
       live: "https://homiezu.com/",
@@ -66,7 +67,7 @@ technologies: ["Next.js", "NextAuth.js", "Prisma", "Drizzle", "Tailwind CSS", "t
     {
       title: "Wordle Game ",
       description: "Built a fully responsive Wordle clone with six-attempt logic and real-time input feedback.Implemented core gameplay: letter evaluation (correct, present, absent) and dynamic DOM updates—no external libraries used.",
-      image: "src/assets/wordle.jpg",
+      image: "wordle.jpg",
       technologies: ["React", "OpenAI API", "Socket.io", "Express"],
       github: "https://github.com/Abhyudya21",
       live: "#",
