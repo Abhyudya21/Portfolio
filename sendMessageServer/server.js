@@ -2,7 +2,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
+require('dotenv').config();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -43,3 +43,6 @@ const transporter = nodemailer.createTransport({
 });
 
 app.listen(5000, () => console.log('✅ Server started on http://localhost:5000'));
+
+console.log('USER:', process.env.EMAIL_USER);
+console.log('PASS:', process.env.EMAIL_PASS ? '✅ Loaded' : '❌ Missing');
