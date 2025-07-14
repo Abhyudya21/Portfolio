@@ -67,7 +67,7 @@ technologies: ["Next.js", "NextAuth.js", "Prisma", "Drizzle", "Tailwind CSS", "t
     {
       title: "Wordle Game ",
       description: "Built a fully responsive Wordle clone with six-attempt logic and real-time input feedback.Implemented core gameplay: letter evaluation (correct, present, absent) and dynamic DOM updates—no external libraries used.",
-      image: "wordle.jpg",
+      image: "/wordle.jpg",
       technologies: ["React", "OpenAI API", "Socket.io", "Express"],
       github: "https://github.com/Abhyudya21",
       live: "#",
