@@ -2,21 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { toast } from "react-toastify";
 
 const ContactSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
   const sectionRef = useRef<HTMLElement>(null);
 
   // Intersection Observer for animation
@@ -36,45 +26,6 @@ const ContactSection = () => {
 
     return () => observer.disconnect();
   }, []);
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch("api/send-message", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData), // include subject now
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        toast.success("🎉 Got it! I’ll reply soon!", {
-          // icon: "🚀",
-          position: "top-center",
-        });
-        setFormData({ name: "", email: "", subject: "", message: "" });
-      } else {
-        toast.error("❌ Failed to send message: " + data.error);
-      }
-    } catch (err) {
-      toast.error("❌ Something went wrong. Try again later.");
-      console.error(err);
-    }
-  };
 
   const contactInfo = [
     {
@@ -101,21 +52,21 @@ const ContactSection = () => {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-24 px-6 scroll-mt-20"
+      className="py-24 px-6"
       aria-label="Contact section"
     >
       <div className="max-w-6xl mx-auto">
         <div
           className={`transition-all duration-1000 ${
             isVisible
-              ? "animate-fade-in-up opacity-100 translate-y-0"
+              ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-10"
           }`}
         >
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-title font-bold mb-4">
-              Get In <span className="gradient-text">Touch</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Get In <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Touch</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Ready to start your next project? I'd love to hear from you. Let's create
@@ -124,79 +75,104 @@ const ContactSection = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <Card className="card-gradient border-border/50">
-              <CardHeader>
-                <CardTitle className="text-2xl text-foreground">Send a Message</CardTitle>
-                <CardDescription>
-                  Fill out the form below and I'll get back to you as soon as possible.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        placeholder="Your name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-                      />
+            {/* Creative Contact Section */}
+            <div className="space-y-6">
+              {/* Animated Greeting Card */}
+              <Card className="border-border/50 overflow-hidden group hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-8 relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 group-hover:from-primary/10 group-hover:to-accent/10 transition-all duration-500"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl animate-pulse">
+                        👋
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold">Hello there!</h3>
+                        <p className="text-muted-foreground">Ready to create something amazing?</p>
+                      </div>
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="your.email@example.com"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                      />
+                    
+                    <p className="text-lg leading-relaxed mb-6">
+                      I'm a passionate developer who loves turning ideas into reality. 
+                      Whether you're a startup with a vision or an established company 
+                      looking to innovate, I'm here to help bring your digital dreams to life.
+                    </p>
+                    
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                
+                      <div className="text-center p-4 rounded-lg bg-accent/10">
+                        <div className="text-2xl font-bold text-accent">24h</div>
+                        <div className="text-sm text-muted-foreground">Response Time</div>
+                      </div>
                     </div>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      placeholder="What's this about?"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      required
-                    />
+                </CardContent>
+              </Card>
+
+              {/* Interactive Action Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Card className="border-border/50 group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+                  <CardContent className="p-6 text-center">
+                    <div className="w-12 h-12 mx-auto mb-4 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                      <Mail className="w-6 h-6" />
+                    </div>
+                    <h4 className="font-semibold mb-2">Quick Email</h4>
+                    <p className="text-sm text-muted-foreground mb-4">Drop me a line directly</p>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full"
+                      onClick={() => window.location.href = 'mailto:abhyudya007@gmail.com'}
+                    >
+                      Send Email
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-border/50 group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+                  <CardContent className="p-6 text-center">
+                    <div className="w-12 h-12 mx-auto mb-4 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-300">
+                      <Phone className="w-6 h-6" />
+                    </div>
+                    <h4 className="font-semibold mb-2">Schedule Call</h4>
+                    <p className="text-sm text-muted-foreground mb-4">Let's talk about your project</p>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full"
+                      onClick={() => window.location.href = 'tel:+918126848040'}
+                    >
+                      Call Now
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Fun Fact Card */}
+              <Card className="border-border/50 hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="text-4xl">💡</div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Fun Fact</h4>
+                      <p className="text-muted-foreground">
+                        I believe the best projects come from great conversations. 
+                        Every successful app starts with understanding your vision and goals.
+                      </p>
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      placeholder="Tell me about your project..."
-                      rows={6}
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    className="w-full bg-hero-gradient hover:shadow-primary transition-all duration-300 hover:scale-105"
-                    size="lg"
-                  >
-                    Send Message
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+
+              {/* CTA Button */}
+              
+            </div>
+            
 
             {/* Contact Info */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-semibold mb-6 text-foreground">Let's Connect</h3>
+                <h3 className="text-2xl font-semibold mb-6">Let's Connect</h3>
                 <p className="text-muted-foreground leading-relaxed mb-8">
                   I'm always excited to discuss new opportunities, creative projects, or
                   potential collaborations. Whether you have a specific project in mind or
@@ -208,13 +184,13 @@ const ContactSection = () => {
                 {contactInfo.map((info, index) => (
                   <Card
                     key={info.title}
-                    className="group card-gradient hover-lift border-border/50 cursor-pointer"
+                    className="group border-border/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                     style={{ animationDelay: `${index * 150}ms` }}
                   >
                     <CardContent className="p-6">
                       <a
                         href={info.href}
-                        className="flex items-center gap-4 text-foreground hover:text-primary transition-colors"
+                        className="flex items-center gap-4 hover:text-primary transition-colors"
                       >
                         <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                           <info.icon className="w-6 h-6" />
@@ -230,21 +206,23 @@ const ContactSection = () => {
                   </Card>
                 ))}
               </div>
-
-              {/* Availability */}
-              <Card className="card-gradient border-border/50">
-                <CardContent className="p-6">
-                  <h4 className="font-semibold mb-2 text-foreground">Availability</h4>
-                  <p className="text-muted-foreground">
-                    Currently available for freelance projects and full-time opportunities.
-                    Response time is typically within 24 hours.
+                  <Card className="border-border/50 bg-gradient-to-r from-primary/10 to-accent/10 hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <h4 className="font-semibold mb-2">Ready to Start?</h4>
+                  <p className="text-muted-foreground mb-4">
+                    Let's discuss your project and see how we can work together
                   </p>
-                  <div className="flex items-center gap-2 mt-3">
-                    <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
-                    <span className="text-sm text-green-400 font-medium">Available now</span>
-                  </div>
+                  <Button 
+                    className="bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all duration-300 hover:scale-105"
+                    size="lg"
+                    onClick={() => window.location.href = 'https://wa.me/8126848040' }
+                  >
+                    Start a Conversation
+                  </Button>
                 </CardContent>
               </Card>
+              
+          
             </div>
           </div>
         </div>

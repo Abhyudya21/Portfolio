@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ExternalLink, Github, X } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import weev from '/weev.jpg';
@@ -12,7 +12,18 @@ import wordle from '/wordle.jpg';
 
 const ProjectsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  interface Project {
+    title: string;
+    description: string;
+    image: string;
+    technologies: string[];
+    github: string;
+    live: string;
+    featured: boolean;
+  }
+  
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -80,76 +91,78 @@ const ProjectsSection = () => {
     },
   ];
 
-  const AllProjectsModal = () => (
-    <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
-      <DialogHeader>
-        <div className="flex justify-between items-center">
-          <DialogTitle className="text-2xl font-bold">All Projects</DialogTitle>
-          <div className="flex gap-2">            
-          </div>
-        </div>
-      </DialogHeader>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        {projects.map((project, index) => (
-          <Card
-            key={project.title}
-            className="group card-gradient hover-lift border border-border/50 overflow-hidden transition-transform duration-300 flex flex-col"
-            style={{ animationDelay: `${index * 100}ms` }}
-          >
-            <div className="relative overflow-hidden h-40 flex-shrink-0">
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setIsProjectModalOpen(true);
+  };
+
+  const ProjectModal = () => (
+    <Dialog open={isProjectModalOpen} onOpenChange={setIsProjectModalOpen}>
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold">{selectedProject?.title}</DialogTitle>
+        </DialogHeader>
+        
+        {selectedProject && (
+          <div className="space-y-6">
+            <div className="relative overflow-hidden rounded-lg">
               <img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src={selectedProject.image} 
+                alt={selectedProject.title}
+                className="w-full h-64 object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <Button size="sm" variant="secondary" className="h-6 w-6 p-0" asChild>
-                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                    <Github className="w-3 h-3" />
-                  </a>
-                </Button>
-                <Button size="sm" className="h-6 w-6 p-0 bg-primary hover:bg-primary/90" asChild>
-                  <a href={project.live} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </Button>
-              </div>
-              {project.featured && (
-                <div className="absolute top-2 left-2">
-                  <Badge className="bg-primary text-primary-foreground text-xs">
+              {selectedProject.featured && (
+                <div className="absolute top-4 left-4">
+                  <Badge className="bg-primary text-primary-foreground">
                     Featured
                   </Badge>
                 </div>
               )}
             </div>
 
-            <CardHeader className="pb-2 flex-grow">
-              <CardTitle className="text-lg text-foreground mb-2">{project.title}</CardTitle>
-              <CardDescription className="text-sm text-muted-foreground leading-relaxed">
-                {project.description}
-              </CardDescription>
-            </CardHeader>
+            <div className="space-y-4">
+              <p className="text-muted-foreground leading-relaxed">
+                {selectedProject.description}
+              </p>
 
-            <CardContent className="pt-0 mt-auto">
-              <div className="flex flex-wrap gap-1">
-                {project.technologies.map((tech) => (
+              <div className="flex flex-wrap gap-2">
+                {selectedProject.technologies.map((tech) => (
                   <Badge 
                     key={tech} 
                     variant="secondary"
-                    className="text-xs bg-primary/10 text-primary border-primary/20"
+                    className="bg-primary/10 text-primary border-primary/20"
                   >
                     {tech}
                   </Badge>
                 ))}
               </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </DialogContent>
+
+              <div className="flex gap-4 pt-4">
+                <Button 
+                  className="flex-1 bg-secondary hover:bg-secondary/80 text-secondary-foreground"
+                  asChild
+                >
+                  <a href={selectedProject.github} target="_blank" rel="noopener noreferrer">
+                    <Github className="w-4 h-4 mr-2" />
+                    View on GitHub
+                  </a>
+                </Button>
+                <Button 
+                  className="flex-1 bg-primary hover:bg-primary/90"
+                  asChild
+                >
+                  <a href={selectedProject.live} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    View Site
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+      </DialogContent>
+    </Dialog>
   );
 
   return (
@@ -174,8 +187,9 @@ const ProjectsSection = () => {
               {projects.filter(project => project.featured).map((project, index) => (
                 <Card 
                   key={project.title}
-                  className="group card-gradient hover-lift border-border/50 overflow-hidden"
+                  className="group card-gradient hover-lift border-border/50 overflow-hidden cursor-pointer"
                   style={{ animationDelay: `${index * 200}ms` }}
+                  onClick={() => handleProjectClick(project)}
                 >
                   <div className="relative overflow-hidden">
                     <img 
@@ -184,18 +198,6 @@ const ProjectsSection = () => {
                       className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <Button size="sm" variant="secondary" className="h-8 w-8 p-0" asChild>
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="w-4 h-4" />
-                        </a>
-                      </Button>
-                      <Button size="sm" className="h-8 w-8 p-0 bg-primary hover:bg-primary/90" asChild>
-                        <a href={project.live} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      </Button>
-                    </div>
                   </div>
                   <CardHeader>
                     <CardTitle className="text-xl text-foreground">{project.title}</CardTitle>
@@ -229,8 +231,9 @@ const ProjectsSection = () => {
               {projects.filter(project => !project.featured).map((project, index) => (
                 <Card
                   key={project.title}
-                  className="group card-gradient hover-lift border border-border/50 overflow-hidden transition-transform duration-300 h-[300px]"
+                  className="group card-gradient hover-lift border border-border/50 overflow-hidden transition-transform duration-300 h-[300px] cursor-pointer"
                   style={{ animationDelay: `${index * 150}ms` }}
+                  onClick={() => handleProjectClick(project)}
                 >
                   <div className="relative overflow-hidden h-32">
                     <img 
@@ -239,18 +242,6 @@ const ProjectsSection = () => {
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <Button size="sm" variant="secondary" className="h-6 w-6 p-0" asChild>
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="w-3 h-3" />
-                        </a>
-                      </Button>
-                      <Button size="sm" className="h-6 w-6 p-0 bg-primary hover:bg-primary/90" asChild>
-                        <a href={project.live} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="w-3 h-3" />
-                        </a>
-                      </Button>
-                    </div>
                   </div>
 
                   <CardHeader className="pb-2">
@@ -282,23 +273,11 @@ const ProjectsSection = () => {
               ))}
             </div>
           </div>
-
-          {/* CTA - Updated to use Dialog */}
-          <div className="text-center mt-16">
-            <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-              <DialogTrigger asChild>
-                <Button 
-                  size="lg"
-                  className="bg-hero-gradient hover:shadow-primary transition-all duration-300 hover:scale-105"
-                >
-                  View All Projects
-                </Button>
-              </DialogTrigger>
-              <AllProjectsModal />
-            </Dialog>
-          </div>
         </div>
       </div>
+
+      {/* Project Modal */}
+      <ProjectModal />
     </section>
   );
 };
