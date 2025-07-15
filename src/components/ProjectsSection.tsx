@@ -58,7 +58,7 @@ const ProjectsSection = () => {
       description: "Built a secure and intuitive journal application using Spring Boot. Implemented CRUD functionality for entries, user authentication, and session management. Integrated MySQL for persistent storage and used Thymeleaf for dynamic, server-side rendered views.",
       image: journal,
       technologies: ["SpringBoot", "MongoDb"],
-      github: "https://github.com/Abhyudya21",
+      github: "https://github.com/Abhyudya21/JournalApp",
       live: "#",
       featured: false
     },
@@ -67,7 +67,7 @@ const ProjectsSection = () => {
       description: "A modern portfolio website with smooth animations, dark/light theme, and responsive design. Built with Next.js and Framer Motion.",
       image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
       technologies: ["Next.js", "Framer Motion", "TailwindCSS", "MDX"],
-      github: "https://github.com/Abhyudya21",
+      github: "https://github.com/Abhyudya21/Portfolio",
       live: "#",
       featured: false
     },
@@ -76,7 +76,7 @@ const ProjectsSection = () => {
       description: "A comprehensive real estate platform allowing users to rent, buy, sell, and lease properties with ease. Features secure user authentication, advanced property filtering, and built-in legal documentation support to streamline real estate transactions. Fully responsive and built for scalability.",
       image: homiezu,
       technologies: ["Next.js", "NextAuth.js", "Prisma", "Drizzle", "Tailwind CSS", "tRPC"],
-      github: "https://github.com/Abhyudya21",
+      github: "https://github.com/Abhyudya21/Gharbhar",
       live: "https://homiezu.com/",
       featured: false
     },

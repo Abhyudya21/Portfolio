@@ -70,7 +70,7 @@ const HeroSection = () => {
           </div>
 
           <h2 className="text-xl sm:text-2xl lg:text-3xl text-muted-foreground font-light mb-8 max-w-3xl mx-auto leading-relaxed">
-            Full Stack Developer & Software Engineer
+            Backend Developer |  Tech Enthusiast
           </h2>
 
           <p className="text-lg text-muted-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed">
@@ -95,7 +95,7 @@ const HeroSection = () => {
               className="border-2 border-primary/20 text-foreground hover:bg-primary/5 hover:border-primary/40 transition-all duration-300 hover:scale-105 text-lg px-8 py-6"
             >
               <a href="/Abhyudya_Resume.pdf" target="_blank" rel="noopener noreferrer">
-                Download Resume
+                View Resume
               </a>
             </Button>
           </div>
@@ -123,7 +123,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <button
           onClick={() => scrollToSection("about")}
           className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors duration-300"
@@ -131,7 +131,7 @@ const HeroSection = () => {
         >
           <ArrowDown className="w-5 h-5 text-primary" />
         </button>
-      </div>
+      </div> */}
 
       {/* Glow background */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-glow-pulse pointer-events-none" />

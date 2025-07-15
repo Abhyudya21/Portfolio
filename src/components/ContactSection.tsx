@@ -48,6 +48,12 @@ const ContactSection = () => {
     },
   ];
 
+  const handleEmailClick = () => {
+    const link = document.createElement('a');
+    link.href = 'mailto:abhyudya007@gmail.com';
+    link.click();
+  };
+
   return (
     <section
       id="contact"
@@ -99,7 +105,6 @@ const ContactSection = () => {
                     </p>
                     
                     <div className="grid grid-cols-2 gap-4 mb-6">
-                
                       <div className="text-center p-4 rounded-lg bg-accent/10">
                         <div className="text-2xl font-bold text-accent">24h</div>
                         <div className="text-sm text-muted-foreground">Response Time</div>
@@ -122,7 +127,7 @@ const ContactSection = () => {
                       variant="outline" 
                       size="sm" 
                       className="w-full"
-                      onClick={() => window.location.href = 'mailto:abhyudya007@gmail.com'}
+                      onClick={handleEmailClick}
                     >
                       Send Email
                     </Button>
@@ -163,12 +168,8 @@ const ContactSection = () => {
                   </div>
                 </CardContent>
               </Card>
-
-              {/* CTA Button */}
-              
             </div>
             
-
             {/* Contact Info */}
             <div className="space-y-8">
               <div>
@@ -191,6 +192,10 @@ const ContactSection = () => {
                       <a
                         href={info.href}
                         className="flex items-center gap-4 hover:text-primary transition-colors"
+                        onClick={info.title === "Email" ? (e) => {
+                          e.preventDefault();
+                          handleEmailClick();
+                        } : undefined}
                       >
                         <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                           <info.icon className="w-6 h-6" />
@@ -206,7 +211,8 @@ const ContactSection = () => {
                   </Card>
                 ))}
               </div>
-                  <Card className="border-border/50 bg-gradient-to-r from-primary/10 to-accent/10 hover:shadow-lg transition-all duration-300">
+              
+              <Card className="border-border/50 bg-gradient-to-r from-primary/10 to-accent/10 hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6 text-center">
                   <h4 className="font-semibold mb-2">Ready to Start?</h4>
                   <p className="text-muted-foreground mb-4">
@@ -215,14 +221,12 @@ const ContactSection = () => {
                   <Button 
                     className="bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all duration-300 hover:scale-105"
                     size="lg"
-                    onClick={() => window.location.href = 'https://wa.me/8126848040' }
+                    onClick={() => window.open('https://wa.me/8126848040', '_blank')}
                   >
                     Start a Conversation
                   </Button>
                 </CardContent>
               </Card>
-              
-          
             </div>
           </div>
         </div>
